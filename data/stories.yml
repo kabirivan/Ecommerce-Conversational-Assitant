@@ -1,0 +1,90 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: search clothes by price
+  steps:
+  - intent: request_clothes_price
+  - action: clothes_price_form
+  - active_loop: clothes_price_form
+  - slot_was_set:
+    - requested_slot: comparator
+  - slot_was_set:
+    - comparator: mayor
+  - slot_was_set:
+    - comparator: menor
+  - slot_was_set:
+    - requested_slot: price
+  - slot_was_set:
+    - price: 10
+  - slot_was_set:
+    - price: 4.50
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: niña
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: clothes_price_form
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values_price
+  - action: action_product_price_search
+
+
+- story: search clothes form + continue
+  steps:
+  - or:
+    - intent: request_clothes
+    - intent: inform
+  - action: clothes_form
+  - active_loop: clothes_form
+  - slot_was_set:
+    - requested_slot: gender
+  - slot_was_set:
+    - gender: niña
+  - slot_was_set:
+    - gender: niño
+  - slot_was_set:
+    - requested_slot: category
+  - slot_was_set:
+    - category: pantalones
+  - slot_was_set:
+    - category: todos
+  - slot_was_set:
+    - requested_slot: size
+  - slot_was_set:
+    - size: 2
+  - slot_was_set:
+    - size: 5
+  - slot_was_set:
+    - requested_slot: color
+  - slot_was_set:
+    - color: negro
+  - slot_was_set:
+    - color: rosado
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: clothes_form
+  - active_loop: null
+  - action: utter_submit
+  - action: utter_slots_values
+  - action: action_product_search
+
+- story: search clothes form + stop
+  steps:
+  - intent: request_clothes
+  - action: clothes_form
+  - active_loop: clothes_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null

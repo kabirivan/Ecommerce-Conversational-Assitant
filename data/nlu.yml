@@ -1,0 +1,507 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hola    
+    - cómo estás
+    - buenos días
+    - buenas tardes
+    - buenas noches
+    - que tal
+    - hola tu
+    - hay alguien ahi
+    - hey
+    - como vamos
+    - hola bot
+    - saludo
+    - hola robot
+
+- intent: affirm
+  examples: |
+    - si
+    - y
+    - ok
+    - claro
+    - correcto
+    - por supusto
+    - suena bien
+    - esta bien
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - nunca
+    - jamas
+    - para nada
+    - no gracias
+    - mmm no
+    - no quiero
+
+- intent: faq/sizing_clarification
+  examples: |
+    - tallas
+    - que tallas maneja?
+    - cuales son los tamaños de la ropa
+    - cual es la talla para una niña de 5 años
+    - cual es la talla para una niña de 2 años
+    - cual es el tamaño para un niño de 4 años
+    - tallas de la ropa
+    - tallas para niños
+
+- intent: faq/payment_methods
+  examples: |
+    - que tipos de pagos ofrece?
+    - como puedo pagar?
+    - quiero pagar
+    - alternativas de pago
+    - quiero saber como pagar
+
+- intent: faq/promotions
+  examples: |
+    - que tipo de promociones tienen?
+    - tiene alguna promocion?
+    - tiene descuentos?
+    - descuentos
+    - promociones
+    - existen promociones
+    - existen descuentos
+    - hay rebaja
+    - hay promociones
+    - rebajas
+    - cupones
+    - rebaje
+
+- intent: chitchat/goodbye
+  examples: |
+    - chao
+    - adios
+    - hasta mañana
+    - te veo luego 
+    - hasta pronto
+    - hasta otro dia
+    - bye
+    - nos vemos luego
+
+- intent: chitchat/bot_challenge
+  examples: |
+    - eres un robot?
+    - eres un humano?   
+    - estas vivo
+    - realmente existes
+    - estoy hablando con un humano
+    - estoy hablando con un robot
+    - robot?
+    - quien eres?
+    - hablame de ti
+
+- intent: chitchat/whats_your_name
+  examples: |
+    - cual es tu nombre?
+    - puedes decirme tu nombre
+    - tu nombre y apellido
+    - como te llamas?
+
+- intent: chitchat/thanks
+  examples: |
+    - gracias
+    - thank you
+    - super, gracias
+    - pai
+    - eres el mejor, gracias
+    - gracias por tu respuesta
+    - ok, gracias
+
+- intent: chitchat/developer
+  examples: |
+    - quiero conocer a tu creador
+    - quiero saber quien te diseñó
+    - quiero saber quien te creó
+    - quiero conocer quien te diseño
+    - quiero conocer quien te creó
+    - puedo saber quien te creó
+    - puedo saber quien te diseñó
+    - dime quien te creó
+    - dime acerca de tu creadores
+    - quien es tu creador
+    - quien es tu papa?
+    - quen es tu mamá?
+
+- intent: chitchat/confirm_presence
+  examples: |
+    - estas ahi?
+    - hay alguien ahi?
+
+- intent: chitchat/goodbye
+  examples: |
+    - chao
+    - adios
+    - hasta luego
+    - nos vemos
+    - bye
+    - goodbye
+    - bye bye
+    - chao chao
+    - hasta mañana
+    - hasta pronto
+    - chao, cuidate
+    - nos vemos mañana
+
+- intent: chitchat/mood_unhappy
+  examples: |
+    - mi día fue terrible
+    - estoy triste
+    - no me siento bien
+    - estoy mal
+    - triste
+    - ahi
+    - muy triste  
+    - mal
+    - mas o menos 
+    - estoy decepcionado
+    - estoy muy triste
+    - no tuve un buen dia
+
+- intent: chitchat/mood_great
+  examples: |
+    - perfecto
+    - bien
+    - asombroso
+    - maravilloso
+    - me siento bien
+    - me siento asombroso
+    - estoy muy bien
+    - estoy bien
+    - estoy asombroso
+    - muy bien
+    - estoy feliz
+    - estoy contento
+    - todo bien 
+    - super
+    - super bien
+    - perfecto
+    - buen
+
+- intent: chitchat/capabilities
+  examples: |
+    - que no más puedes hacer?
+    - que habilidades tienesÇ
+    - puedes volar?
+    - puedes hablar?
+    - dime tus habilidades
+    - habilidades
+    - cuales son tus dones?
+    - que puedes hacer?
+    - de que eres capaz?
+
+- intent: chitchat/ask_weather
+  examples: |
+    - Como es el clima hoy?
+    - como es el clima hoy
+    - clima
+    - está soleado?
+    - está lloviendo?
+    - Cual es el clima de mañana
+    - hace sol
+    - va a llover
+    - está frio?
+    - clima?
+    - llueve?
+    - soleado
+    - esta nevando
+    - que frio
+    - que calor
+
+- intent: chitchat/ask_wherefrom
+  examples: |
+    - donde vives?
+    - donde vives
+    - de donde eres?
+    - de donde eres?
+    - donde naciste?
+    - donde naciste
+    - de donde vienes?
+    - de donde provienes?
+    - de donde vienes?
+    - De que ciudad eres?
+    - de que país eres
+    - Cual es tu origen?
+    - origen?
+    - cuales son tus raices?
+    - cuales son tus raices
+    - en que ciudad fuiste convencido?
+
+- intent: chitchat/ask_time
+  examples: |
+    - que hora es?
+    - Qué hora es?
+    - que hora es ahora?
+    - puedes decirme la hora?
+    - puede decirme la hora
+    - sabes que hora es?
+    - sabes que hora es
+    - que hora tienes?
+    - que hora tienes?
+    - la hora, por favor
+    - la hora
+    - necesito la hora
+    - dime la hora
+    - que hora es exactamente.
+
+- intent: out_of_scope
+  examples: |
+    - todo esta bien?
+    - te sientes bien?
+    - como esta tu dia hoy?
+    - como te sientes hoy?
+    - estas bien?
+    - esta lloviendo?
+    - esta haciendo sol?
+    - esta soleado?
+    - va a llover?
+    - quiero pizza
+    - cual es el pronostico del clima?
+    - hace mucho viento afuera?
+    - blah blah blah
+    - cuanto es 5 + 5
+    - cual es la raiz cuadrada de 25
+
+- intent: stop
+  examples: |
+    - tu no puedes ayudarme
+    - No estas ayudando
+    - No sirves
+    - Pienso, que no puedes ayudarme
+    - No, eso no quiero
+    - no me sigues
+    - esta conversación no ayuda
+    - para!
+    - detente
+    - stop
+    - no sirves
+    - ya no quiero comprar
+    - no quiero comprar nada
+    - cambie de opinion, ya no quiero comprar
+    - no quiero comprar
+    - no quiero comprar ropa
+    - ya no quiero
+    
+
+- intent: request_clothes
+  examples: |
+    - quiero comprar ropa
+    - que colores no mas tiene
+    - muestrame colores
+    - muestreme colores
+    - enseñame colores
+    - colores
+    - quiero comprar ropa de [niño](gender)
+    - quiero comprar ropa de [niña](gender)
+    - quiero comprar ropa de [nino](gender)
+    - quiero comprar ropa de [nina](gender)
+    - quiero comprar ropa de [varon](gender)
+    - quiero comprar ropa de [hombre](gender)
+    - quiero comprar ropa de [mujer](gender)
+    - comprar ropa de [varon](gender)
+    - comprar ropa de [mujer](gender)
+    - ropa de [hombre](gender)
+    - ropa de [mujer](gender)
+    - ropa de [nino](gender)
+    - ropa de [nina](gender)
+    - me gustaria comprar
+    - quiero ver [toda](category) la ropa
+    - quiero ver [toda](category) la coleccion
+    - [todo](category)
+    - [todos](category) los modelos
+    - me gustaria comprar [pantalones](category) para [niñas](gender)
+    - me gustaria comprar [pantalones](category)
+    - quiero comprar [pantalones](category)
+    - me gustaria comprar [busos](category) para [niños](gender)
+    - me gustaria comprar [busos](category)
+    - me gustaria comprar [camisetas](category)
+    - quiero comprar [busos](category)
+    - quiero comprar [blusas](category)
+    - quiero comprar [camisetas](category)
+    - necesito [blusas](category)
+    - me gustaria comprar [blusas](category)
+    - me gustaria comprar [camisetas](category)
+    - [busos](category) [niños](gender)
+    - [pantalones](category) [niñas](gender)
+    - quiero ver ropa
+    - quiero ver la ropa
+    - que no mas tiene
+    - puedo ver la ropa que vendes
+    - ropa de [niño](gender)
+    - ropa de [niña](gender)
+    - ropa de [niño](gender) de 3 años
+    - me gustaría comprar ropa de [niño](gender) de 4 años
+    - me gustaría comprar ropa de [niño](gender) de 5 años
+    - me gustaría comprar ropa de [niño](gender) de 6 años
+    - ropa de [niño](gender) de 7 años
+    - ropa de [niño](gender) de 8 años
+    - ropa de [niña](gender) de 3 años
+    - ropa de [niña](gender) de 4 años
+    - ropa de [niña](gender) de 5 años
+    - ropa de [niña](gender) de 6 años
+    - ropa de [niña](gender) de 7 años
+    - ropa de [niña](gender) de 8 años
+    - ropa de [niño](gender) de tres años
+    - ropa de [niño](gender) de cuatro años
+    - ropa de [niño](gender) de cinco años
+    - me gustaría comprar ropa de [niño](gender) de seis años
+    - me gustaría comprar ropa de [niño](gender) de siete años
+    - me gustaría comprar ropa de [niño](gender) de ocho años
+    - ropa de [niña](gender) de tres años
+    - ropa de [niña](gender) de cuatro años
+    - ropa de [niña](gender) de cinco años
+    - ropa de [niña](gender) de seis años
+    - ropa de [niña](gender) de siete años
+    - ropa de [niña](gender) de ocho años
+    - ropa de [niño](gender) para 3 años
+    - ropa de [niño](gender) para 4 años
+    - quiero comprar ropa de [niño](gender) para 5años
+    - quiero comprar ropa de [niño](gender) para 6 años
+    - quiero comprar ropa de [niño](gender) para 7 años
+    - quiero comprar ropa de [niño](gender) para 8 años
+    - ropa de [niña](gender) para 3 años
+    - ropa de [niña](gender) para 4 años
+    - ropa de [niña](gender) para 5 años
+    - quiero comprar ropa para [mujercitas](gender)
+    - quiero comprar ropa para [mujercitas](gender) para 6 años
+    - quiero comprar ropa de [niña](gender) para 6 años
+    - quiero comprar ropa de [niña](gender) para 7 años
+    - ropa de [niña](gender) para 8 años
+    - me gustaría comprar ropa de ropa de [niño](gender) para tres años
+    - ropa de [niño](gender) para cuatro años
+    - quiero comprar ropa de [niño](gender) para cinco años
+    - quiero comprar ropa de [niño](gender) para seis años
+    - ropa de [niño](gender) para siete años
+    - ropa de [niño](gender) para ocho años
+    - ropa de [niña](gender) para tres años
+    - ropa de [niña](gender) para cuatro años
+    - quiero comprar ropa de [niña](gender) para cinco años
+    - quiero comprar ropa de [niña](gender) para seis años
+    - quiero comprar ropa de [niño](gender) de color [negro](color) para seis años
+    - quiero comprar ropa de [niño](gender) de color [rojo](color) para seis años
+    - quiero comprar ropa de color [celeste](color)
+    - quiero comprar ropa de color [verde](color)
+    - quiero ropa de color [morado](color)
+    - quiero ropa de color [plomo](color)
+    - me gustaría comprar ropa de ropa de [niña](gender) para siete años
+    - ropa de [niña](gender) para ocho años
+    - que tienes?
+    - que vendes?
+    - que ropa tienes?
+    - 8 años
+    - 3 años
+    - 4 años
+    - 2 anos
+    - 3 anos
+    - 3 anos
+    - 4
+    - 5
+    - 3
+    - 2
+
+- intent: request_clothes_price
+  examples: |
+    - quiero comprar ropa que cueste [menos](comparator) de 25 dolares
+    - quiero comprar ropa que cueste [menos](comparator) de 12 dolares
+    - quiero comprar ropa que cueste [menos](comparator) de 3.99 dolares
+    - quiero comprar ropa que cueste [mas](comparator) de 20 dolares
+    - quiero comprar ropa que cueste [mas](comparator) de 10 dolares
+    - quiero comprar ropa que cueste [mas](comparator) de 5.99 dolares
+    - ropa [menor](comparator) a 20 dolares
+    - ropa [menor](comparator) a 15 dolares
+    - ropa [menor](comparator) a 9.99 dolares
+    - ropa que cueste [mas](comparator) de 30 dolares
+    - ropa que cueste [mas](comparator) de 10.25 dolares
+    - ropa que cueste [mas](comparator) de 2.99 dolares
+    - ropa que cueste [mayor](comparator) a 10 dolares
+    - ropa que cueste [mayor](comparator) a 7 dolares
+    - ropa [mayor](comparator) a 13 dolares
+    - ropa [mayor](comparator) a 7 dolares
+    - ropa [mayor](comparator) a 14.99 dolares
+    - [tengo]{"entity": "comparator", "value": "menor"} 20 dolares
+    - [tengo]{"entity": "comparator", "value": "menor"} 5 dolares
+    - [tengo]{"entity": "comparator", "value": "menor"} 1 dolar
+    - [tengo]{"entity": "comparator", "value": "menor"} cinco dolares
+    - que me [alcanza]{"entity": "comparator", "value": "menor"} con 10 dolares
+    - que me [alcanza]{"entity": "comparator", "value": "menor"} con diez dolares
+    - que me [alcanza]{"entity": "comparator", "value": "menor"} con quince dolares
+    - [tengo]{"entity": "comparator", "value": "menor"} solamente 5 dolares
+    - [tengo]{"entity": "comparator", "value": "menor"} solamente dos dolares
+    - quiero comprar ropa pero [tengo]{"entity": "comparator", "value": "menor"} solamente 5 dolares
+    - quiero ropa de 10 dolares 
+
+- intent: inform
+  examples: |
+    - muestrame ropa [niña](gender)
+    - muestrame ropa [niño](gender)
+    - muestrame ropa de color [azul](color)
+    - muestrame ropa de color [amarillo](color)
+    - muestrame ropa de color [rojo](color)
+    - muestrame ropa de color [verde](color)
+    - muestrame ropa de color [morado](color)
+    - quiero [busos](category) de color [rojo](color)
+    - quiero [blusas](category) de color [rojo](rosado)
+    - quiero ropa de color [fucsia](color)
+    - quiero ropa de color [lila](color)
+    - quiero ropa de color [negro](color)
+    - quiero ropa de color [morado](color)
+    - tiene ropa de [niño](gender)
+    - tiene ropa de [niña](gender)
+    - quiero comprar ropa de color [rojo](color)
+    - quiero comprar ropa de color [rosado](color)
+    - ropa de color [azul](color)
+    - ropa de color [fucsia](color)
+    - [azul](color)
+    - [amarillo](color)
+    - [negro](color)
+    - [mostaza](color)
+    - [fucsia](color)
+    - [lila](color)
+    - [morado](color)
+    - [palo de rosa](color)
+    - [plomo](color)
+    - [verde](color)
+    - [celeste](color)
+    - [beige](color)
+
+- synonym: niña
+  examples: |
+    - niñas
+    - nina
+    - ninas
+    - mujer
+    - mujeres
+    - mujercitas
+
+- synonym: niño
+  examples: |
+    - niños
+    - nino
+    - ninos
+    - hombre
+    - hombres
+    - varón
+    - varon
+  
+- synonym: todos
+  examples: |
+    - ver todo
+    - todito
+    - toda
+    - todo
+
+- synonym: menor
+  examples: |
+    - menos
+    - tengo
+    - alcanza
+
+- synonym: mayor
+  examples: |
+    - mas
+    - más

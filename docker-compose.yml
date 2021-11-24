@@ -1,0 +1,204 @@
+version: "3.9"
+
+x-database-credentials: &database-credentials
+  DB_HOST: "${DB_HOST}"
+  DB_PORT: "5432"
+  DB_USER: "${DB_USER}"
+  DB_PASSWORD: "${DB_PASSWORD}"
+  DB_LOGIN_DB: "${DB_LOGIN_DB}"
+  DB_DATABASE: "${DB_DATABASE}"
+
+x-rabbitmq-credentials: &rabbitmq-credentials
+  RABBITMQ_HOST: "rabbit"
+  RABBITMQ_USERNAME: "${RABBITMQ_USERNAME}"
+  RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+
+x-redis-credentials: &redis-credentials
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  REDIS_PASSWORD: ${REDIS_PASSWORD}
+  REDIS_DB: "1"
+  REDIS_CACHE_DB: "2"
+  ACCEPTABLE_QUERY_COUNT_NUMBER: "50000"
+
+x-duckling-credentials: &duckling-credentials
+  RASA_DUCKLING_HTTP_URL: "http://duckling:8000"
+
+x-s3-credentials: &s3-credentials
+  AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+  AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+  AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+  BUCKET_NAME: "${BUCKET_NAME}"
+  AWS_ENDPOINT_URL: "${AWS_ENDPOINT_URL}"
+
+x-telegram-credentials: &telegram-credentials
+  TELEGRAM_ACCESS_TOKEN: "${TELEGRAM_ACCESS_TOKEN}"
+  TELEGRAM_VERIFY: "${TELEGRAM_VERIFY}"
+  TELEGRAM_WEB_HOOK: "${TELEGRAM_WEB_HOOK}"
+
+x-facebook-credentials: &facebook-credentials
+  FACEBOOK_VERIFY: "${FACEBOOK_VERIFY}"
+  FACEBOOK_SECRET: "${FACEBOOK_SECRET}"
+  FACEBOOK_PAGE_ACCESS_TOKEN: "${FACEBOOK_PAGE_ACCESS_TOKEN}"
+
+
+x-rasa-credentials: &rasa-credentials
+  <<: *rabbitmq-credentials
+  <<: *database-credentials
+  <<: *redis-credentials
+  <<: *duckling-credentials
+  <<: *s3-credentials
+  <<: *telegram-credentials
+  <<: *facebook-credentials
+  RASA_TOKEN: ${RASA_TOKEN}
+  RASA_MODEL_PULL_INTERVAL: 10
+  RABBITMQ_QUEUE: "rasa_production_events"
+  RASA_TELEMETRY_ENABLED: ${RASA_TELEMETRY_ENABLED}
+
+
+
+services: 
+
+  action-server:
+    container_name: action-server 
+    image: jrtec/rasa-action-server
+    expose:
+      - "5055"
+    volumes:        
+      - ./actions:/app/actions
+
+  # Rasa server for infrencing
+  rasa-production:
+    container_name: rasa-production 
+    restart: always
+    image: jrtec/rasa-spacy-es
+    volumes:
+        - ./.config:/app/.config
+        - ./config.yml:/app/config.yml
+        - ./credentials.yml:/app/credentials.yml
+        - ./domain.yml:/app/domain.yml
+        - ./endpoints.yml:/app/endpoints.yml
+        - ./data:/app/data
+        - ./models:/app/models
+    expose:
+      - "5005"
+    command: >
+      run
+      --enable-api
+    depends_on:
+      - rabbit
+      - redis
+      - action-server 
+      - duckling   
+    environment:
+      <<: *rasa-credentials
+      RASA_ENVIRONMENT: "production"
+      MPLCONFIGDIR: "/tmp/.matplotlib"
+      RASA_MODEL_SERVER: "http://rasa-x:5002/api/projects/default/models/tags/production"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rasa-production.entrypoints=web"
+      - "traefik.http.routers.rasa-production.rule=Host(`rasa.${LOCAL_1}`, `rasa.${LOCAL_2}`, `rasa.${EXT_ENDPOINT1}`, `rasa.${EXT_ENDPOINT2}`, `rasa.${EXT_ENDPOINT3}`)"
+      - "traefik.http.services.rasa-production.loadbalancer.server.port=5005"
+
+  redis:
+    container_name: redis
+    restart: always
+    logging:
+      driver: none
+    image: "bitnami/redis:${REDIS_VERSION}"    
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    expose:
+      - "6379"
+
+  rabbit:
+    container_name: rabbit
+    logging:
+      driver: none
+    restart: always
+    image: "bitnami/rabbitmq:${RABBITMQ_VERSION}"    
+    environment:
+      RABBITMQ_HOST: "rabbit"
+      RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      RABBITMQ_DISK_FREE_RELATIVE_LIMIT: "0.1"
+    expose:
+      - "5672"   
+
+  # db:
+  #   container_name: db
+  #   restart: always
+  #   image: "bitnami/postgresql:${POSTGRESQL_VERSION}"
+  #   expose:
+  #     - "5432"    
+  #   environment:
+  #     POSTGRES_HOST_AUTH_METHOD: "trust"
+  #     POSTGRESQL_USERNAME: "${DB_USER}"
+  #     POSTGRESQL_PASSWORD: "${DB_PASSWORD}"
+  #     POSTGRESQL_DATABASE: "${DB_DATABASE}"
+  #   volumes:
+  #     - ./db:/bitnami/postgresql
+
+  # pgadmin4:
+  #   container_name: pgadmin4
+  #   logging:
+  #     driver: none
+  #   restart: always
+  #   image: "dpage/pgadmin4:5.3"    
+  #   ports:
+  #     - "5050:80"  
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+  #     PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
+  #   volumes:
+  #     - ./pgadmin:/var/lib/pgadmin
+
+  duckling:
+    container_name: duckling
+    restart: always
+    image: "rasa/duckling:${RASA_DUCKLING_VERSION}"
+    expose:
+      - "8000"        
+    command: ["duckling-example-exe", "--no-access-log", "--no-error-log"]
+
+  traefik:
+    image: "traefik:latest"
+    container_name: "traefik"
+    restart: always
+    command:
+      - "--providers.docker=true"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik/traefik.yml:/traefik.yml:ro"
+      - "./traefik/.htpasswd:/.htpasswd"      
+      - "${EB_LOG_BASE_DIR:-./traefik}/traefik-proxy:/logs"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.${LOCAL_1}`, `traefik.${LOCAL_2}`,`traefik.${EXT_ENDPOINT1}`, `traefik.${EXT_ENDPOINT2}`, `traefik.${EXT_ENDPOINT3}`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.usersfile=/.htpasswd"
+
+  nginx:
+    container_name: nginx
+    restart: unless-stopped
+    logging:
+      driver: none
+    image: "nginx:latest"
+    expose:
+      - 8080
+    volumes:
+      - ./static:/code/static
+      - ./nginx-config-files/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-config-files/app.nginx.template:/etc/nginx/templates/app.nginx.template
+      - "${EB_LOG_BASE_DIR:-./nginx-config-files}/nginx-proxy:/var/log/nginx"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.entrypoints=web"
+      - "traefik.http.routers.nginx.rule=Host(`nginx.${LOCAL_1}`, `nginx.${LOCAL_2}`, `nginx.${EXT_ENDPOINT1}`, `nginx.${EXT_ENDPOINT2}`, `nginx.${EXT_ENDPOINT3}`)"
+      - "traefik.http.services.nginx.loadbalancer.server.port=8080"
+    mem_limit: 80m
