@@ -41,12 +41,28 @@ tracker_store:
    password: ${DB_PASSWORD}
    db: ${DB_DATABASE}
    
-#tracker_store:
-#    type: mongod
-#    url: <url to your mongo instance, e.g. mongodb://localhost:27017>
-#    db: <name of the db within your mongo instance, e.g. rasa>
-#    username: <username used for authentication>
-#    password: <password used for authentication>
+lock_store:
+   type: "redis"
+   url: ${REDIS_HOST}
+   port: ${REDIS_PORT}
+   password: ${REDIS_PASSWORD}
+   db: ${REDIS_DB}
+
+cache:
+   type: "redis"
+   url: ${REDIS_HOST}
+   port: ${REDIS_PORT}
+   password: ${REDIS_PASSWORD}
+   db: ${REDIS_CACHE_DB}
+   key_prefix: "rasax_cache"
+
+event_broker:
+   type: "pika"
+   url: ${RABBITMQ_HOST}
+   username: ${RABBITMQ_USERNAME}
+   password: ${RABBITMQ_PASSWORD}
+   queues:
+   - ${RABBITMQ_QUEUE}
 
 # Event broker which all conversation events should be streamed to.
 # https://rasa.com/docs/rasa/event-brokers
