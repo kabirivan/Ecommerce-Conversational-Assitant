@@ -1,9 +1,8 @@
 version: "2.0"
-
 nlu:
 - intent: greet
   examples: |
-    - hola    
+    - hola
     - cómo estás
     - buenos días
     - buenas tardes
@@ -16,7 +15,6 @@ nlu:
     - hola bot
     - saludo
     - hola robot
-
 - intent: affirm
   examples: |
     - si
@@ -27,7 +25,6 @@ nlu:
     - por supusto
     - suena bien
     - esta bien
-
 - intent: deny
   examples: |
     - no
@@ -38,7 +35,6 @@ nlu:
     - no gracias
     - mmm no
     - no quiero
-
 - intent: faq/sizing_clarification
   examples: |
     - tallas
@@ -49,7 +45,6 @@ nlu:
     - cual es el tamaño para un niño de 4 años
     - tallas de la ropa
     - tallas para niños
-
 - intent: faq/payment_methods
   examples: |
     - que tipos de pagos ofrece?
@@ -57,7 +52,6 @@ nlu:
     - quiero pagar
     - alternativas de pago
     - quiero saber como pagar
-
 - intent: faq/promotions
   examples: |
     - que tipo de promociones tienen?
@@ -72,22 +66,27 @@ nlu:
     - rebajas
     - cupones
     - rebaje
-
 - intent: chitchat/goodbye
   examples: |
     - chao
     - adios
     - hasta mañana
-    - te veo luego 
+    - te veo luego
     - hasta pronto
     - hasta otro dia
     - bye
     - nos vemos luego
-
+    - hasta luego
+    - nos vemos
+    - goodbye
+    - bye bye
+    - chao chao
+    - chao, cuidate
+    - nos vemos mañana
 - intent: chitchat/bot_challenge
   examples: |
     - eres un robot?
-    - eres un humano?   
+    - eres un humano?
     - estas vivo
     - realmente existes
     - estoy hablando con un humano
@@ -95,14 +94,12 @@ nlu:
     - robot?
     - quien eres?
     - hablame de ti
-
 - intent: chitchat/whats_your_name
   examples: |
     - cual es tu nombre?
     - puedes decirme tu nombre
     - tu nombre y apellido
     - como te llamas?
-
 - intent: chitchat/thanks
   examples: |
     - gracias
@@ -112,7 +109,6 @@ nlu:
     - eres el mejor, gracias
     - gracias por tu respuesta
     - ok, gracias
-
 - intent: chitchat/developer
   examples: |
     - quiero conocer a tu creador
@@ -127,27 +123,10 @@ nlu:
     - quien es tu creador
     - quien es tu papa?
     - quen es tu mamá?
-
 - intent: chitchat/confirm_presence
   examples: |
     - estas ahi?
     - hay alguien ahi?
-
-- intent: chitchat/goodbye
-  examples: |
-    - chao
-    - adios
-    - hasta luego
-    - nos vemos
-    - bye
-    - goodbye
-    - bye bye
-    - chao chao
-    - hasta mañana
-    - hasta pronto
-    - chao, cuidate
-    - nos vemos mañana
-
 - intent: chitchat/mood_unhappy
   examples: |
     - mi día fue terrible
@@ -156,13 +135,12 @@ nlu:
     - estoy mal
     - triste
     - ahi
-    - muy triste  
+    - muy triste
     - mal
-    - mas o menos 
+    - mas o menos
     - estoy decepcionado
     - estoy muy triste
     - no tuve un buen dia
-
 - intent: chitchat/mood_great
   examples: |
     - perfecto
@@ -177,12 +155,10 @@ nlu:
     - muy bien
     - estoy feliz
     - estoy contento
-    - todo bien 
+    - todo bien
     - super
     - super bien
-    - perfecto
     - buen
-
 - intent: chitchat/capabilities
   examples: |
     - que no más puedes hacer?
@@ -194,7 +170,6 @@ nlu:
     - cuales son tus dones?
     - que puedes hacer?
     - de que eres capaz?
-
 - intent: chitchat/ask_weather
   examples: |
     - Como es el clima hoy?
@@ -212,18 +187,15 @@ nlu:
     - esta nevando
     - que frio
     - que calor
-
 - intent: chitchat/ask_wherefrom
   examples: |
     - donde vives?
     - donde vives
     - de donde eres?
-    - de donde eres?
     - donde naciste?
     - donde naciste
     - de donde vienes?
     - de donde provienes?
-    - de donde vienes?
     - De que ciudad eres?
     - de que país eres
     - Cual es tu origen?
@@ -231,7 +203,6 @@ nlu:
     - cuales son tus raices?
     - cuales son tus raices
     - en que ciudad fuiste convencido?
-
 - intent: chitchat/ask_time
   examples: |
     - que hora es?
@@ -242,13 +213,11 @@ nlu:
     - sabes que hora es?
     - sabes que hora es
     - que hora tienes?
-    - que hora tienes?
     - la hora, por favor
     - la hora
     - necesito la hora
     - dime la hora
     - que hora es exactamente.
-
 - intent: out_of_scope
   examples: |
     - todo esta bien?
@@ -266,7 +235,6 @@ nlu:
     - blah blah blah
     - cuanto es 5 + 5
     - cual es la raiz cuadrada de 25
-
 - intent: stop
   examples: |
     - tu no puedes ayudarme
@@ -286,8 +254,6 @@ nlu:
     - no quiero comprar
     - no quiero comprar ropa
     - ya no quiero
-    
-
 - intent: request_clothes
   examples: |
     - quiero comprar ropa
@@ -325,7 +291,6 @@ nlu:
     - quiero comprar [camisetas](category)
     - necesito [blusas](category)
     - me gustaria comprar [blusas](category)
-    - me gustaria comprar [camisetas](category)
     - [busos](category) [niños](gender)
     - [pantalones](category) [niñas](gender)
     - quiero ver ropa
@@ -405,7 +370,6 @@ nlu:
     - [5](number)
     - [7](number)
     - [1](number)
-
 - intent: request_clothes_price
   examples: |
     - quiero comprar ropa que cueste [menos](comparator) de 25 dolares
@@ -435,8 +399,7 @@ nlu:
     - [tengo]{"entity": "comparator", "value": "menor"} solamente 5 dolares
     - [tengo]{"entity": "comparator", "value": "menor"} solamente dos dolares
     - quiero comprar ropa pero [tengo]{"entity": "comparator", "value": "menor"} solamente 5 dolares
-    - quiero ropa de 10 dolares 
-
+    - quiero ropa de 10 dolares
 - intent: inform
   examples: |
     - muestrame ropa [niña](gender)
@@ -472,7 +435,11 @@ nlu:
     - [verde](color)
     - [celeste](color)
     - [beige](color)
-
+- synonym: menor
+  examples: |
+    - tengo
+    - alcanza
+    - menos
 - synonym: niña
   examples: |
     - niñas
@@ -481,7 +448,6 @@ nlu:
     - mujer
     - mujeres
     - mujercitas
-
 - synonym: niño
   examples: |
     - niños
@@ -491,20 +457,12 @@ nlu:
     - hombres
     - varón
     - varon
-  
 - synonym: todos
   examples: |
     - ver todo
     - todito
     - toda
     - todo
-
-- synonym: menor
-  examples: |
-    - menos
-    - tengo
-    - alcanza
-
 - synonym: mayor
   examples: |
     - mas
