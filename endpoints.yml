@@ -33,6 +33,11 @@ action_endpoint:
 #     username: postgres # username used for authentication
 #     password: ivan # password used for authentication
 
+models:
+   url: ${RASA_MODEL_SERVER}
+   token: ${RASA_X_TOKEN}
+   wait_time_between_pulls: ${RASA_MODEL_PULL_INTERVAL}
+
 tracker_store:
    type: sql
    dialect: postgresql
