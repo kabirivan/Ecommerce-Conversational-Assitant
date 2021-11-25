@@ -35,11 +35,12 @@ action_endpoint:
 
 tracker_store:
    type: sql
-   dialect: ${DB_LOGIN_DB}
+   dialect: postgresql
    url: ${DB_HOST}
    username: ${DB_USER}
    password: ${DB_PASSWORD}
    db: ${DB_DATABASE}
+   login_db: ${DB_LOGIN_DB}
    
 lock_store:
    type: "redis"
