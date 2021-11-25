@@ -108,5 +108,4 @@ db
 #nginx-config-files
 .config
 auth
-models
 credentials
