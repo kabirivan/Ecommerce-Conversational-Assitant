@@ -330,6 +330,8 @@ nlu:
     - [pantalones](category) [niñas](gender)
     - quiero ver ropa
     - quiero ver la ropa
+    - quiero ver ropa de [hombre](gender)
+    - quiero ver la ropa [mujer](gender)
     - que no mas tiene
     - puedo ver la ropa que vendes
     - ropa de [niño](gender)
@@ -452,6 +454,8 @@ nlu:
     - quiero ropa de color [morado](color)
     - tiene ropa de [niño](gender)
     - tiene ropa de [niña](gender)
+    - tiene ropa de [nino](gender)
+    - tiene ropa de [nina](gender)
     - quiero comprar ropa de color [rojo](color)
     - quiero comprar ropa de color [rosado](color)
     - ropa de color [azul](color)

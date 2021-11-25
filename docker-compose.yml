@@ -105,7 +105,6 @@ services:
     expose:
       - "5002"  
     volumes:
-    - ./.config:/app/.config
     - ./config.yml:/app/config.yml
     - ./credentials.yml:/app/credentials.yml
     - ./environments.yml:/app/environments.yml
