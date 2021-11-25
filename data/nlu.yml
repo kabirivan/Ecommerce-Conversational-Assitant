@@ -94,6 +94,8 @@ nlu:
     - robot?
     - quien eres?
     - hablame de ti
+    - quien eres
+    - identificate
 - intent: chitchat/whats_your_name
   examples: |
     - cual es tu nombre?
@@ -370,6 +372,14 @@ nlu:
     - [5](number)
     - [7](number)
     - [1](number)
+    - [blusas](category)
+    - que no mas tienes
+    - [busos](category)
+    - 1 ano
+    - quiero [busos](category) [azules](color)
+    - quiero [busos](category)
+    - [camisetas](category)
+    - 8 anos
 - intent: request_clothes_price
   examples: |
     - quiero comprar ropa que cueste [menos](comparator) de 25 dolares
@@ -435,6 +445,7 @@ nlu:
     - [verde](color)
     - [celeste](color)
     - [beige](color)
+    - [rojo](color)
 - synonym: menor
   examples: |
     - tengo
