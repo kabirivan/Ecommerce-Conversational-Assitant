@@ -393,16 +393,16 @@ nlu:
     - que tienes?
     - que vendes?
     - que ropa tienes?
-    - 8 años
-    - 3 años
-    - 4 años
-    - 2 anos
-    - 3 anos
-    - 3 anos
-    - 4
-    - 5
-    - 3
-    - 2
+    - [8](number) años
+    - [3](number) años
+    - [4](number) años
+    - [2](number) anos
+    - [3](number) anos
+    - [20](number) anos
+    - [4](number)
+    - [5](number)
+    - [7](number)
+    - [1](number)
 
 - intent: request_clothes_price
   examples: |
@@ -412,13 +412,13 @@ nlu:
     - quiero comprar ropa que cueste [mas](comparator) de 20 dolares
     - quiero comprar ropa que cueste [mas](comparator) de 10 dolares
     - quiero comprar ropa que cueste [mas](comparator) de 5.99 dolares
-    - ropa [menor](comparator) a 20 dolares
-    - ropa [menor](comparator) a 15 dolares
-    - ropa [menor](comparator) a 9.99 dolares
-    - ropa que cueste [mas](comparator) de 30 dolares
-    - ropa que cueste [mas](comparator) de 10.25 dolares
-    - ropa que cueste [mas](comparator) de 2.99 dolares
-    - ropa que cueste [mayor](comparator) a 10 dolares
+    - ropa [menor](comparator) a [23](number) dolares
+    - ropa [menor](comparator) a [19](number) dolares
+    - ropa [menor](comparator) a [9.99](number) dolares
+    - ropa que cueste [mas](comparator) de [30](number) dolares
+    - ropa que cueste [mas](comparator) de [10.25](number) dolares
+    - ropa que cueste [mas](comparator) de [2.99](number) dolares
+    - ropa que cueste [mayor](comparator) a [10](number) dolares
     - ropa que cueste [mayor](comparator) a 7 dolares
     - ropa [mayor](comparator) a 13 dolares
     - ropa [mayor](comparator) a 7 dolares
